@@ -68,4 +68,19 @@ class BoxList implements IteratorAggregate
 
         return $boxAVolume <=> $boxBVolume;
     }
+
+    /**
+     * Remove box from list.
+     *
+     * @param Box $box
+     */
+    public function remove(Box $box)
+    {
+        foreach ($this->list as $key => $boxToCheck) {
+            if ($boxToCheck === $box) {
+                unset($this->list[$key]);
+                break;
+            }
+        }
+    }
 }

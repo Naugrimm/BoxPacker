@@ -189,6 +189,9 @@ class Packer implements LoggerAwareInterface
             }
 
             $packedBoxes->insert($bestBox);
+            if ($bestBox->getBox() instanceof LimitedQuantityBox && !$bestBox->getBox()->isAvailable($bestBox)) {
+                $this->boxes->remove($bestBox->getBox());
+            }
         }
 
         return $packedBoxes;
